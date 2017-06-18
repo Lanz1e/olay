@@ -8,7 +8,7 @@ Diagrama de Classe: --
 
 Telas da aplicação:
 
-1 - Entrada: http://imgur.com/a/hXdcp
-2 - Cadastro de um novo Evento: http://imgur.com/a/YjsYV / http://imgur.com/a/qwJSH 
-3 - Markers de Eventos cadastrados (Roxo - posição do usuario / Vermelho - Eventos): http://imgur.com/a/Wpd7q
-4 - Informações do Evento (Ao clicar sobre o marker): http://imgur.com/a/1CNy2
+1 - Entrada: http://imgur.com/a/hXdcp__
+2 - Cadastro de um novo Evento: http://imgur.com/a/YjsYV / http://imgur.com/a/qwJSH__
+3 - Markers de Eventos cadastrados (Roxo - posição do usuario / Vermelho - Eventos): http://imgur.com/a/Wpd7q__
+4 - Informações do Evento (Ao clicar sobre o marker): http://imgur.com/a/1CNy2__
