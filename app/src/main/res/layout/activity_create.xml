@@ -95,30 +95,31 @@
 
     <EditText
         android:id="@+id/txtEndereco"
+        android:focusable="false"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="Endereço do local"
-        android:inputType="textCapSentences"
+        android:hint="Endereço (clique para ativar o GPS)"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/txtHora"
         android:layout_marginTop="10dp"
-        android:textColor="#fff"/>
+        android:textColor="#fff"
+        android:inputType="textMultiLine"/>
 
     <EditText
         android:id="@+id/txtDescricao"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/txtEndereco"
         android:hint="Descrição\n(ex: Atrações, preços, regras, contato, etc)."
         android:inputType="textCapSentences"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_below="@+id/txtEndereco"
-        android:textColor="#fff"/>
+        android:textColor="#fff" />
 
 </RelativeLayout>

@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.location.Location;
 import android.location.LocationManager;
+import android.net.ConnectivityManager;
 import android.os.AsyncTask;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.ActionBar;
@@ -21,6 +22,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.InputType;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -171,6 +173,7 @@ public class CreateActivity extends AppCompatActivity {
         txtnome = (EditText) findViewById(R.id.txtNome);
         txtdescricao = (EditText) findViewById(R.id.txtDescricao);
         txtendereco = (EditText) findViewById(R.id.txtEndereco);
+        txtendereco.setInputType(InputType.TYPE_NULL);
         txtdata = (EditText) findViewById(R.id.txtData);
         txthora = (EditText) findViewById(R.id.txtHora);
 
@@ -209,14 +212,29 @@ public class CreateActivity extends AppCompatActivity {
         customActionBarView.findViewById(R.id.actionbar_done).setOnClickListener(
                 new View.OnClickListener() {
                     public void onClick(View v) {
-                        onUpload(v);
-
+                        //"Enviar"
+                        if(!isOnline()){
+                            mostrarAviso(v,"Não foi possível acessar a internet.");
+                        }
+                        else{
+                            if(txtnome.getText().toString().equals("Posição atual")){
+                                mostrarAviso(v, "Por favor, selecione outro nome para o evento!");
+                            }
+                            else if(txtnome.getText().toString().equals("")
+                                    ||txtdescricao.getText().toString().equals("")
+                                    ||txtendereco.getText().toString().equals("")){
+                                mostrarAviso(v, "Por favor, preencha todos os campos!");
+                            }
+                            else{
+                                onUpload(v);
+                            }
+                        }
                     }
                 });
         customActionBarView.findViewById(R.id.actionbar_cancel).setOnClickListener(
                 new View.OnClickListener() {
                     public void onClick(View v) {
-                        // "Cancel"
+                        // "Cancelar"
                         finish();
                     }
                 });
@@ -235,51 +253,26 @@ public class CreateActivity extends AppCompatActivity {
         txtendereco.setOnClickListener(new View.OnClickListener() {
             @SuppressWarnings("deprecation")
             public void onClick(View v) {
+                mostrarAviso(v,"Voce pode atualizar a localização clicando no campo novamente.");
+                //GPS
+                // Create class object
+                gps = new GPSTracker(CreateActivity.this);
 
-                final CharSequence[] items = {"Manualmente", "Usar o GPS para enviar as coordenadas do local (Essa opção pode levar vários minutos)"};
+                // Check if GPS enabled
+                if(gps.canGetLocation()) {
 
-                AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
-                builder.setIcon(R.drawable.local);
-                builder.setTitle("Como você deseja inserir o Endereço ?");
-                builder.setItems(items, new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int item) {
-                        switch (item) {
-                            case 0:
-                                //MANUAL
-                                txtendereco.setText("");
-                                break;
+                    double latitude = gps.getLatitude();
+                    double longitude = gps.getLongitude();
 
-                            case 1:
-                                //GPS
-                                // Create class object
-                                gps = new GPSTracker(CreateActivity.this);
-
-                                // Check if GPS enabled
-                                if(gps.canGetLocation()) {
-
-                                    double latitude = gps.getLatitude();
-                                    double longitude = gps.getLongitude();
-
-                                    // \n is for new line
-                                    //Toast.makeText(getApplicationContext(), "Your Location is - \nLat: " + latitude + "\nLong: " + longitude, Toast.LENGTH_LONG).show();
-                                    txtendereco.setText(latitude+","+longitude);
-                                } else {
-                                    // Can't get location.
-                                    // GPS or network is not enabled.
-                                    // Ask user to enable GPS/network in settings.
-                                    gps.showSettingsAlert();
-                                }
-                                break;
-                        }
-                    }
-                });
-                builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.cancel();
-                    }
-                });
-                AlertDialog alert = builder.create();
-                alert.show();
+                    // \n is for new line
+                    //Toast.makeText(getApplicationContext(), "Your Location is - \nLat: " + latitude + "\nLong: " + longitude, Toast.LENGTH_LONG).show();
+                    txtendereco.setText(latitude+","+longitude);
+                } else {
+                    // Can't get location.
+                    // GPS or network is not enabled.
+                    // Ask user to enable GPS/network in settings.
+                    gps.showSettingsAlert();
+                }
             }
         });
     }
@@ -490,7 +483,6 @@ public class CreateActivity extends AppCompatActivity {
                             Toast.makeText(getApplicationContext(), EntityUtils.toString(resposta.getEntity()), Toast.LENGTH_SHORT).show();
 
                         } catch (ParseException e) {
-                            //mostrar no log de erros, caso de algum
                             e.printStackTrace();
                         } catch (IOException e) {
                             e.printStackTrace();
@@ -498,10 +490,8 @@ public class CreateActivity extends AppCompatActivity {
                     }
                 });
             }
-            catch(Exception e)
-            {
-                Toast.makeText(getApplicationContext(), e.toString(), Toast.LENGTH_SHORT).show();
-                Log.e("log_tag", "Error:  "+e.toString());
+            catch(Exception e){
+                e.printStackTrace();
             }
         }
 
@@ -529,4 +519,11 @@ public class CreateActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), texto, Toast.LENGTH_SHORT).show();
     }
 
+    public boolean isOnline() {
+        ConnectivityManager cm =
+                (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        return cm.getActiveNetworkInfo() != null &&
+                cm.getActiveNetworkInfo().isConnectedOrConnecting();
+    }
 }

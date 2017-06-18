@@ -11,6 +11,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.location.Location;
 import android.location.LocationManager;
+import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -203,8 +204,16 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         mGoogleMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
                                                 @Override
                                                 public boolean onMarkerClick(Marker marker) {
-                                                    fabcreate.setVisibility(View.GONE);
-                                                    criaCards(marker);
+                                                    if(marker.getTitle().equals("Posição atual")){
+                                                        mostrarToast("O marker Roxo representa sua posição atual.");
+                                                    }
+                                                    else if(!isOnline()){
+                                                        mostrarToast("Não foi possível acessar a internet.");
+                                                    }
+                                                    else{
+                                                        fabcreate.setVisibility(View.GONE);
+                                                        criaCards(marker);
+                                                    }
                                                     return true;
                                                 }
                                             });
@@ -282,6 +291,8 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             }
 
         } catch (JSONException e) {
+            mostrarToast("Error" + e.toString());
+        } catch(Exception e){
             mostrarToast("Error" + e.toString());
         }
 
@@ -442,7 +453,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             }
 
             catch (IOException e) {
-                mostrarToastL("Error..." + e.toString());
+                e.printStackTrace();
             }
             return answer;
         }
@@ -452,7 +463,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             try{
                 carregaMarkers();
             }catch(Exception e){
-                mostrarToastL(e.toString());
+                e.printStackTrace();
             }
         }
     }
@@ -487,7 +498,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             }
 
         } catch (JSONException e) {
-            mostrarToast("Error" + e.toString());
+            e.printStackTrace();
         }
 
     }
@@ -500,4 +511,12 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         Toast.makeText(getApplicationContext(), texto, Toast.LENGTH_LONG).show();
     }
 
+    //VERIFICAR A INTERNET
+    public boolean isOnline() {
+        ConnectivityManager cm =
+                (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        return cm.getActiveNetworkInfo() != null &&
+                cm.getActiveNetworkInfo().isConnectedOrConnecting();
+    }
 }
