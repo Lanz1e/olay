@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_create"
+    android:background="#424242"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.aluno.olay.CreateActivity">
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:text="Foto do evento"
+        android:textSize="14sp"
+        android:textColor="#ff5722"/>
+
+    <ImageView
+        android:id="@+id/imvFoto"
+        android:layout_width="match_parent"
+        android:layout_height="169dp"
+        android:layout_below="@+id/textView1"
+        android:layout_weight="1"
+        android:adjustViewBounds="false"
+        android:background="#696d72"
+        android:onClick="onChoose"
+        android:scaleType="centerInside"
+        android:src="@drawable/ic_add_white_24dp" />
+
+    <EditText
+        android:id="@+id/txtNome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/imvFoto"
+        android:layout_marginTop="10dp"
+        android:hint="Nome do evento"
+        android:inputType="textCapSentences"
+        android:textColor="#fff" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtNome"
+        android:text="Data (basta clicar no campo)"
+        android:textSize="14sp"
+        android:textColor="#ff5722"/>
+
+    <EditText
+        android:id="@+id/txtData"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/textView3"
+        android:layout_toEndOf="@+id/textView3"
+        android:layout_toRightOf="@+id/textView3"
+        android:focusable="false"
+        android:hint="Data"
+        android:textAlignment="center"
+        android:textColor="#fff"/>
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtData"
+        android:text="Horário (basta clicar no campo)"
+        android:textSize="14sp"
+        android:textColor="#ff5722"/>
+
+    <EditText
+        android:id="@+id/txtHora"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/txtData"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignStart="@+id/txtData"
+        android:layout_below="@+id/textView2"
+        android:focusable="false"
+        android:hint="Hora"
+        android:textAlignment="center"
+        android:textColor="#fff"/>
+
+    <EditText
+        android:id="@+id/txtEndereco"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Endereço do local"
+        android:inputType="textCapSentences"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/txtHora"
+        android:layout_marginTop="10dp"
+        android:textColor="#fff"/>
+
+    <EditText
+        android:id="@+id/txtDescricao"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Descrição\n(ex: Atrações, preços, regras, contato, etc)."
+        android:inputType="textCapSentences"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/txtEndereco"
+        android:textColor="#fff"/>
+
+</RelativeLayout>

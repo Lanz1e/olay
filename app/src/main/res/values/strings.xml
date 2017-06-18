@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">Olay</string>
+    <string name="title_activity_login">Logar</string>
+
+    <!--imgur-->
+    <string name="notification_success">Imagem enviada</string>
+    <string name="notification_progress">Enviando...</string>
+    <string name="notification_share_link">Link da Imagem</string>
+    <string name="notification_fail">Falha no envio</string>
+
+    <!-- actionbar buttons-->
+    <string name="done">Enviar</string>
+    <string name="cancel">Cancelar</string>
+    <string name="title_activity_view_event">Map</string>
+    <string name="title_activity_maps">Map</string>
+
+    <!--cards-->
+    <string name="amplia">Clique na imagem para ampliar</string>
+    <string name="datahora">Data e Horário</string>
+    <string name="descricao">Descrição</string>
+    <string name="foto">Foto do Evento. Clique para ampliar</string>
+
+</resources>
