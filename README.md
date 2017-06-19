@@ -1,7 +1,7 @@
 Olay é um aplicativo em que as pessoas podem cadastrar e visualizar eventos (festas por exemplo) proximos a ela.
 Utiliza MySQL para Database, API Imgur para upload de fotos, API GoogleMaps v2, API Picasso para download e tratamento de imagens, PHP para cadastro e consulta (Junto com JSONs) de Eventos.
 
-Integrantes: Jefferson Morais, Lucas Michael e Yan Ribeiro
+Integrantes: Jefferson Morais, Lucas Michael e Yan Ribeiro<br />
 Orientador: Giuliano Bertoti
 
 Diagrama de Classe: http://imgur.com/a/ICKWM
