@@ -4,7 +4,7 @@ Utiliza MySQL para Database, API Imgur para upload de fotos, API GoogleMaps v2, 
 Integrantes: Jefferson Morais, Lucas Michael e Yan Ribeiro
 Orientador: Giuliano Bertoti
 
-Diagrama de Classe: --
+Diagrama de Classe: http://imgur.com/a/ICKWM
 
 Telas da aplicação:
 
