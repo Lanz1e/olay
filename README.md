@@ -16,4 +16,4 @@ Telas da aplicação:
 4 - Informações do Evento (Ao clicar sobre o marker): http://imgur.com/a/1CNy2<br />
 
 
-**EN** Olay in an Android app for viewing and inserting new events in your position- e.g., parties. It utilizes MySQL for Database, Imgur's API to upload and host the event's pictures, Google Maps v2's API, Picasso's API to download and manage images inside the app- i.e., stretching, fitting, cutting, etc. and, PHP and JSON to insert and get the event's data through the app.
+:us: Olay in an Android app for viewing and inserting new events in your position- e.g., parties. It utilizes MySQL for Database, Imgur's API to upload and host the event's pictures, Google Maps v2's API, Picasso's API to download and manage images inside the app- i.e., stretching, fitting, cutting, etc. and, PHP and JSON to insert and get the event's data through the app.
